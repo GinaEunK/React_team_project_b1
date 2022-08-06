@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const InputPage = () => {
-    return (
-        <div>
-            gg
-        </div>
-    );
+  return <div>후우</div>;
 };
 
 export default InputPage;
