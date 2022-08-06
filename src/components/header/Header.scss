@@ -1,0 +1,11 @@
+@import '../../common/color.scss';
+
+.header {
+  background-color: $components-color;
+  height: 72px;
+  padding: 0px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $font-title-color;
+}

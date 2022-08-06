@@ -1,18 +1,18 @@
-@import "../src/common/color.scss";
+@import '../src/common/color.scss';
 
 @font-face {
-  font-family: "RIDIBatang";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff")
-    format("woff");
+  font-family: 'RIDIBatang';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 * {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: "RIDIBatang", sans-serif;
+  font-family: 'RIDIBatang', sans-serif;
 }
 
 a {
@@ -20,9 +20,9 @@ a {
 }
 
 body {
-  background: $background-color;
+  background-color: $background-color;
 }
 
 .container {
-  margin:0px 40px;
+  margin: 0px 40px;
 }
