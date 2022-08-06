@@ -2,7 +2,7 @@ import React from "react";
 import "./App.scss";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home/Home"
-import InputPage from "./pages/inputPage/InputPage";
+import InputPage from "./pages/inputpage/InputPage";
 import PostList from "./pages/postlist/PostList";
 import Detail from "./pages/detailpage/Detail";
 
