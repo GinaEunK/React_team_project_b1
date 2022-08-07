@@ -3,15 +3,23 @@ import { APIkey } from "../../common/apis/movieAPiKey";
 import movieApi from "../../common/apis/movieApi";
 import "./InputPageModal.scss";
 
-const SearchForm = () => {
+const SearchForm = ({ moviePosting, setMoviePosting, setShow }) => {
   let [movieTitle, setMovieTitle] = useState("");
 
-  let onChangeHandler = (e) => {
+  let onChangeHandler2 = (e) => {
     const copy = e.target.value;
     setMovieTitle(copy);
   };
 
   let [searchMovie, setSearchMovie] = useState();
+
+  let onChangeHandler = (movieId) => {
+    const copy = searchMovie.find((movie) => movie.Poster == movieId);
+    // console.log(copy.Poster);
+    setMoviePosting({ ...moviePosting, img: copy.Poster });
+    // console.log(moviePosting);
+    setShow(false);
+  };
 
   console.log(searchMovie);
 
@@ -29,37 +37,30 @@ const SearchForm = () => {
       });
   };
 
-  // let onSubmitHandler = (e) => {
-  //   e.preventDefault();
-  //   axios({
-  //     method: 'get',
-  //     url: 
-  //   }).get(`?apikey=${APIkey}&s=${movieTitle}&type=movie&page=20`)
-  //     .then((data) => {
-  //       let copy = data.data.Search;
-  //       setSearchMovie(copy);
-  //       // console.log(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log("Err :", err);
-  //     });
-  // };
-
-
   return (
     <div className="modalBox">
       <form className="formBox" onSubmit={onSubmitHandler}>
         <input
+          className="searchMovieInput"
           type="text"
           name="title"
           value={movieTitle}
           placeholder="제목을 입력하세요!"
-          onChange={onChangeHandler}
+          onChange={onChangeHandler2}
         />
       </form>
       <div className="imgBox">
         {searchMovie !== undefined
-          ? searchMovie.map((movie, index) => <img className="imgCard" src={movie.Poster} />)
+          ? searchMovie.map((movie) => (
+            movie.Poster !== "N/A" ?
+              <img
+                className="imgCard"
+                onClick={() => {
+                  onChangeHandler(movie.Poster);
+                }}
+                src={movie.Poster}
+              /> : ''
+            ))
           : "NotFound"}
       </div>
     </div>

@@ -14,17 +14,18 @@ const InputPage = () => {
 
   const [moviePosting, setMoviePosting] = useState(initialState);
 
-  const onChangeHandler = (e) => {
+  let onChangeHandler = (e) => {
     const { name, value } = e.target;
     setMoviePosting({ ...moviePosting, [name]: value });
   };
 
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState(initialState);
 
-  const onSubmitHandler = (event) => {
+  let onSubmitHandler = (event) => {
     event.preventDefault();
     let copy = moviePosting;
     setSearch(copy);
+    console.log(search.img);
     setMoviePosting(initialState);
   };
   //   console.log(search);
@@ -51,15 +52,16 @@ const InputPage = () => {
               search
             </span>
             <Modal show={show} onHide={handleClose}>
-              <InputPageModal />
+              <InputPageModal moviePosting={moviePosting} 
+              setShow={setShow}
+              setMoviePosting={setMoviePosting}
+              handleClose={handleClose} 
+              onChangeHandler={onChangeHandler} />
             </Modal>
           </span>
-          <input
-            type="hidden"
-            name="img"
-            value={moviePosting.img}
-            onChange={onChangeHandler}
-          />
+          <div >
+          {search.img !== undefined ? <img className="imgtool" src={moviePosting.img} /> : ''}
+          </div>
           제목
           <input
             type="text"
@@ -77,7 +79,7 @@ const InputPage = () => {
             onChange={onChangeHandler}
             className="inputBody"
           ></textarea>
-          <button onClick={onSubmitHandler}>추가하기</button>
+          <button className="addButton" onClick={onSubmitHandler}>추가하기</button>
         </div>
       </div>
     </div>
