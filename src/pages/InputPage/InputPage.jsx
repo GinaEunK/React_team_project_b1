@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import InputPageModal from "../../components/inputpagemodal/InputPageModal"
 import "./inputPage.scss";
 
 const InputPage = () => {
+
+  let navigate = useNavigate();
   const initialState = {
     id: 0,
     userId: "",
@@ -27,6 +30,7 @@ const InputPage = () => {
     setSearch(copy);
     console.log(search.img);
     setMoviePosting(initialState);
+    navigate('/')
   };
   //   console.log(search);
   const [show, setShow] = useState(false);
