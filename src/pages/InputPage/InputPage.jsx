@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
-import InputPageModal from "../../components/inputpagemodal/InputPageModal"
+import InputPageModal from "../../components/inputpagemodal/InputPageModal";
 import "./inputPage.scss";
 
 const InputPage = () => {
-
   let navigate = useNavigate();
   const initialState = {
     id: 0,
@@ -30,7 +29,7 @@ const InputPage = () => {
     setSearch(copy);
     console.log(search.img);
     setMoviePosting(initialState);
-    navigate('/')
+    navigate("/");
   };
   //   console.log(search);
   const [show, setShow] = useState(false);
@@ -41,8 +40,38 @@ const InputPage = () => {
   return (
     <div className="inputcontainer">
       <div className="inputbox">
+        <div className="imgcontainer">
+          <div className="imgbox">
+            {moviePosting.img === undefined || moviePosting.img === "" ? (
+              <div className="noneimg" onClick={handleShow}>
+                +
+              </div>
+            ) : (
+
+                <img
+                  id="simg"
+                  onClick={handleShow}
+                  className="imgtool"
+                  src={moviePosting.img}
+                />
+            )}
+          </div>
+          <span className="searchBox">
+            {/* <span onClick={handleShow} className="searchImg">
+              이미지 추가하기
+            </span> */}
+            <Modal show={show} onHide={handleClose}>
+              <InputPageModal
+                moviePosting={moviePosting}
+                setShow={setShow}
+                setMoviePosting={setMoviePosting}
+                handleClose={handleClose}
+                onChangeHandler={onChangeHandler}
+              />
+            </Modal>
+          </span>
+        </div>
         <div className="formbox">
-          작성자
           <input
             type="text"
             name="userId"
@@ -50,23 +79,7 @@ const InputPage = () => {
             placeholder="사용자ID"
             onChange={onChangeHandler}
           />
-          <span className="searchBox">
-            이미지 추가하기
-            <span onClick={handleShow} className="searchImg">
-              search
-            </span>
-            <Modal show={show} onHide={handleClose}>
-              <InputPageModal moviePosting={moviePosting} 
-              setShow={setShow}
-              setMoviePosting={setMoviePosting}
-              handleClose={handleClose} 
-              onChangeHandler={onChangeHandler} />
-            </Modal>
-          </span>
-          <div >
-          {search.img !== undefined ? <img className="imgtool" src={moviePosting.img} /> : ''}
-          </div>
-          제목
+
           <input
             type="text"
             name="title"
@@ -74,7 +87,7 @@ const InputPage = () => {
             placeholder="제목"
             onChange={onChangeHandler}
           />
-          내용
+
           <textarea
             type="text"
             name="body"
@@ -83,7 +96,9 @@ const InputPage = () => {
             onChange={onChangeHandler}
             className="inputBody"
           ></textarea>
-          <button className="addButton" onClick={onSubmitHandler}>추가하기</button>
+          <button className="addButton" onClick={onSubmitHandler}>
+            추가하기
+          </button>
         </div>
       </div>
     </div>

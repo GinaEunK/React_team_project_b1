@@ -61,7 +61,7 @@ const SearchForm = ({ moviePosting, setMoviePosting, setShow }) => {
                 src={movie.Poster}
               /> : ''
             ))
-          : "NotFound"}
+          : movieTitle==="" ? '' : "Not Found"}
       </div>
     </div>
   );
