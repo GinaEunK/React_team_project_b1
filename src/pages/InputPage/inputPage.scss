@@ -10,6 +10,17 @@
   height: 100%;
   padding: 40px;
 }
+
+.faArrowLeft{
+color: $font-title-color;
+margin-bottom: 20px;
+font-size: 20px;
+cursor: pointer;
+
+&:hover{
+  scale:1.1;
+}
+}
 .inputbox {
   display: flex;
   justify-content: space-between;
@@ -100,6 +111,7 @@
   color: white;
   background: $font-title-color;
   padding: 15px;
+  font-size: 15px;
   cursor: pointer;
   transition: all 0.3s;
 

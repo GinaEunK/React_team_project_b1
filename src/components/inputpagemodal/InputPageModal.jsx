@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { APIkey } from "../../common/apis/movieAPiKey";
 import movieApi from "../../common/apis/movieApi";
+import { FaTimes } from 'react-icons/fa';
 import "./InputPageModal.scss";
 
 const SearchForm = ({ moviePosting, setMoviePosting, setShow }) => {
@@ -39,7 +40,8 @@ const SearchForm = ({ moviePosting, setMoviePosting, setShow }) => {
 
   return (
     <div className="modalBox">
-      <form className="formBox" onSubmit={onSubmitHandler}>
+      <FaTimes className="faArrowLeft" onClick={()=>setShow(false)}/>
+      <form className="formBox" onSubmit={onSubmitHandler} >
         <input
           className="searchMovieInput"
           type="text"

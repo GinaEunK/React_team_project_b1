@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import InputPageModal from "../../components/inputpagemodal/InputPageModal";
+import { FaTimes } from 'react-icons/fa';
 import "./inputPage.scss";
 
 const InputPage = () => {
@@ -39,6 +40,7 @@ const InputPage = () => {
 
   return (
     <div className="inputcontainer">
+      <FaTimes className="faArrowLeft" onClick={()=>navigate('/')} />
       <div className="inputbox">
         <div className="imgcontainer">
           <div className="imgbox">
