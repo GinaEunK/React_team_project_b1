@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.scss";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home/Home";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import InputPage from "./pages/InputPage/InputPage";
@@ -14,10 +13,9 @@ function App() {
       <Header />
       <div className="container">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<PostList />} />
           <Route path="/poting" element={<InputPage />} />
-          <Route path="/postlist" element={<PostList />} />
-          <Route path="/detaillist" element={<Detail />} />
+          <Route path="/detail/:id" element={<Detail />} />
           {/* <Route path="*" element={<PageNotFound />} /> */}
         </Routes>
       </div>

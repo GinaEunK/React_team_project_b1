@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { APIkey } from "../../common/apis/movieAPiKey";
 import movieApi from "../../common/apis/movieApi";
+
 import { FaTimes } from 'react-icons/fa';
 import "./InputPageModal.scss";
 
@@ -47,7 +48,7 @@ const SearchForm = ({ moviePosting, setMoviePosting, setShow }) => {
           onChange={onChangeHandler2}
         />
       </form>
-      <div className="imgBox">
+      <div className="imgBox2">
         {searchMovie !== undefined
           ? searchMovie.map((movie, index) => (
             movie.Poster !== "N/A" ?

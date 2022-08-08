@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import InputPageModal from "../../components/inputpagemodal/InputPageModal";
+import { addMovie } from "../../redux/modules/movieSlice"
+import { useDispatch } from "react-redux";
+
 import { FaTimes } from "react-icons/fa";
 import shortId from "shortid";
 import "./inputPage.scss";
 
 const InputPage = () => {
   let navigate = useNavigate();
+    const dispatch = useDispatch();
   const shortid = shortId.generate();
   const initialState = {
     id: 0,
@@ -24,8 +28,6 @@ const InputPage = () => {
     setMoviePosting({ ...moviePosting, [name]: value, id: shortid });
   };
 
-  const [search, setSearch] = useState(initialState);
-
   let onSubmitHandler = (event) => {
     if (
       moviePosting.userId === "" ||
@@ -37,8 +39,7 @@ const InputPage = () => {
       alert("내용을 모두 채워주세요!!");
     } else {
       event.preventDefault();
-      let copy = moviePosting;
-      setSearch(copy);
+       dispatch(addMovie(moviePosting, shortid));
       // console.log(search.img);
       setMoviePosting(initialState);
       alert('정상적으로 등록 되었습니다.')
