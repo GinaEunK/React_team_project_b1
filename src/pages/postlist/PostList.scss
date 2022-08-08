@@ -2,6 +2,11 @@
 
 .movie-list {
   margin: 20px 0px;
+  border: none;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+
 
   h2 {
     color: $font-title-color;
@@ -12,6 +17,18 @@
 
 .movie-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  grid-gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 2fr));
+  grid-gap: 30px;
+}
+
+.goposting{
+  display: flex;
+  margin: 25px auto;
+  flex-direction: row;
+  justify-content: flex-end;
+  color: $font-title-color;
+}
+
+.gotoposting{
+  cursor: pointer;
 }
