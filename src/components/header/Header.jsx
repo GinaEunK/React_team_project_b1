@@ -1,11 +1,10 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import './Header.scss';
+import React from "react";
+import "./Header.scss";
 
 const Header = () => {
   return (
-    <div className='header'>
-      <div className='logo'>1조</div>
+    <div className="header">
+      <div className="logo">1조</div>
     </div>
   );
 };
