@@ -15,7 +15,7 @@ const InputPage = () => {
   const shortid = shortId.generate();
   const initialState = {
     id: 0,
-    userId: "",
+    userid: "",
     title: "",
     body: "",
     img: "",
@@ -30,7 +30,7 @@ const InputPage = () => {
 
   let onSubmitHandler = (event) => {
     if (
-      moviePosting.userId === "" ||
+      moviePosting.userid === "" ||
       moviePosting.title === "" ||
       moviePosting.body === "" ||
       moviePosting.img === ""
@@ -90,8 +90,8 @@ const InputPage = () => {
         <div className="formbox">
           <input
             type="text"
-            name="userId"
-            value={moviePosting.userId}
+            name="userid"
+            value={moviePosting.userid}
             placeholder="사용자ID"
             onChange={onChangeHandler}
           />

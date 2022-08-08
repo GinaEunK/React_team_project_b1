@@ -14,7 +14,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<PostList />} />
-          <Route path="/poting" element={<InputPage />} />
+          <Route path="/posting" element={<InputPage />} />
           <Route path="/detail/:id" element={<Detail />} />
           {/* <Route path="*" element={<PageNotFound />} /> */}
         </Routes>
