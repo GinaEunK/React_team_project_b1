@@ -16,13 +16,9 @@ const SearchForm = ({ moviePosting, setMoviePosting, setShow }) => {
 
   let onChangeHandler = (movieId) => {
     const copy = searchMovie.find((movie) => movie.Poster == movieId);
-    // console.log(copy.Poster);
     setMoviePosting({ ...moviePosting, img: copy.Poster });
-    // console.log(moviePosting);
     setShow(false);
   };
-
-  console.log(searchMovie);
 
   let onSubmitHandler = (e) => {
     e.preventDefault();
@@ -53,13 +49,14 @@ const SearchForm = ({ moviePosting, setMoviePosting, setShow }) => {
       </form>
       <div className="imgBox">
         {searchMovie !== undefined
-          ? searchMovie.map((movie) => (
+          ? searchMovie.map((movie, index) => (
             movie.Poster !== "N/A" ?
               <img
                 className="imgCard"
                 onClick={() => {
                   onChangeHandler(movie.Poster);
                 }}
+                key={index}
                 src={movie.Poster}
               /> : ''
             ))

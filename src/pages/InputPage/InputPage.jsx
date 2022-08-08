@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import InputPageModal from "../../components/inputpagemodal/InputPageModal";
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes } from "react-icons/fa";
+import shortId from "shortid";
 import "./inputPage.scss";
 
 const InputPage = () => {
   let navigate = useNavigate();
+  const shortid = shortId.generate();
   const initialState = {
     id: 0,
     userId: "",
@@ -19,18 +21,29 @@ const InputPage = () => {
 
   let onChangeHandler = (e) => {
     const { name, value } = e.target;
-    setMoviePosting({ ...moviePosting, [name]: value });
+    setMoviePosting({ ...moviePosting, [name]: value, id: shortid });
   };
 
   const [search, setSearch] = useState(initialState);
 
   let onSubmitHandler = (event) => {
-    event.preventDefault();
-    let copy = moviePosting;
-    setSearch(copy);
-    console.log(search.img);
-    setMoviePosting(initialState);
-    navigate("/");
+    if (
+      moviePosting.userId === "" ||
+      moviePosting.title === "" ||
+      moviePosting.body === "" ||
+      moviePosting.img === ""
+    ) {
+      event.preventDefault();
+      alert("내용을 모두 채워주세요!!");
+    } else {
+      event.preventDefault();
+      let copy = moviePosting;
+      setSearch(copy);
+      // console.log(search.img);
+      setMoviePosting(initialState);
+      alert('정상적으로 등록 되었습니다.')
+      navigate("/");
+    }
   };
   //   console.log(search);
   const [show, setShow] = useState(false);
@@ -40,22 +53,22 @@ const InputPage = () => {
 
   return (
     <div className="inputcontainer">
-      <FaTimes className="faArrowLeft" onClick={()=>navigate('/')} />
+      <FaTimes className="faArrowLeft" onClick={() => navigate("/")} />
       <div className="inputbox">
         <div className="imgcontainer">
           <div className="imgbox">
+            {/* 유효성 검사/*/}
             {moviePosting.img === undefined || moviePosting.img === "" ? (
               <div className="noneimg" onClick={handleShow}>
                 +
               </div>
             ) : (
-
-                <img
-                  id="simg"
-                  onClick={handleShow}
-                  className="imgtool"
-                  src={moviePosting.img}
-                />
+              <img
+                id="simg"
+                onClick={handleShow}
+                className="imgtool"
+                src={moviePosting.img}
+              />
             )}
           </div>
           <span className="searchBox">
