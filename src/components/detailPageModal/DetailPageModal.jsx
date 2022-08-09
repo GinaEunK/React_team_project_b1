@@ -1,31 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
+import { Modal, Button } from "react-bootstrap";
+import { FaTimes } from "react-icons/fa";
 import "./DetailPageModal.scss";
 
-const DetailPageModal = () => {
-  const [edit, setEdit] = useState(false);
-
-  const onClickEditButton = () => {
-    setEdit(true);
-  };
-
+const DetailPageModal = ({ show, onHide }) => {
   return (
-    <div>
-      <div className="modalBox">
-        {eidt ? (
-          <button type="buttonn" className="edit_btn">
-            수정하기
-          </button>
-        ) : (
-          <button
-            type="buttonn"
-            className="edit_btn"
-            onClick={onClickEditButton}
-          >
-            수정완료
-          </button>
-        )}
+    <Modal
+      className="modalBox"
+      show={show}
+      onHide={onHide}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <FaTimes className="faArrowLeft" onClick={onHide} />
+      <div className="editWrap">
+        <textarea
+          className="editBody"
+          type="text"
+          placeholder="내용을 입력해주세요"
+        ></textarea>
       </div>
-    </div>
+      <button className="edit_done_btn">수정완료</button>
+    </Modal>
   );
 };
 
