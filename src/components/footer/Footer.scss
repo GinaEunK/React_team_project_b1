@@ -3,9 +3,12 @@
 .footer {
   background: $components-color;
   height: 72px;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   color: $font-primary;
   flex-direction: column;
+  width: 100%;
+  
 }

@@ -1,7 +1,17 @@
 @import "../../common/color.scss";
 
+.inputWrap {
+  border: none;
+  width: 100%;
+  
+  min-height: 87.5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .inputcontainer {
-  margin: 40px auto;
+  margin: 10px auto;
   border: 1px $font-title-color solid;
   border-radius: 10px;
   background: $components-color;

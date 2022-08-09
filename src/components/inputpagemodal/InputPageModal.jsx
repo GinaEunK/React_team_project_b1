@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { APIkey } from "../../common/apis/movieAPiKey";
 import movieApi from "../../common/apis/movieApi";
 
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes } from "react-icons/fa";
 import "./InputPageModal.scss";
 
 const SearchForm = ({ moviePosting, setMoviePosting, setShow }) => {
@@ -36,34 +36,39 @@ const SearchForm = ({ moviePosting, setMoviePosting, setShow }) => {
   };
 
   return (
-    <div className="modalBox">
-      <FaTimes className="faArrowLeft" onClick={()=>setShow(false)}/>
-      <form className="formBox" onSubmit={onSubmitHandler} >
-        <input
-          className="searchMovieInput"
-          type="text"
-          name="title"
-          value={movieTitle}
-          placeholder="제목을 입력하세요!"
-          onChange={onChangeHandler2}
-        />
-      </form>
-      <div className="imgBox2">
-        {searchMovie !== undefined
-          ? searchMovie.map((movie, index) => (
-            movie.Poster !== "N/A" ?
-              <img
-                className="imgCard"
-                onClick={() => {
-                  onChangeHandler(movie.Poster);
-                }}
-                key={index}
-                src={movie.Poster}
-              /> : ''
-            ))
-          : movieTitle==="" ? '' : "Not Found"}
+      <div className="modalBox">
+        <FaTimes className="faArrowLeft" onClick={() => setShow(false)} />
+        <form className="formBox" onSubmit={onSubmitHandler}>
+          <input
+            className="searchMovieInput"
+            type="text"
+            name="title"
+            value={movieTitle}
+            placeholder="제목을 입력하세요!"
+            onChange={onChangeHandler2}
+          />
+        </form>
+        <div className="imgBox2">
+          {searchMovie !== undefined
+            ? searchMovie.map((movie, index) =>
+                movie.Poster !== "N/A" ? (
+                  <img
+                    className="imgCard"
+                    onClick={() => {
+                      onChangeHandler(movie.Poster);
+                    }}
+                    key={index}
+                    src={movie.Poster}
+                  />
+                ) : (
+                  ""
+                )
+              )
+            : movieTitle === ""
+            ? ""
+            : "Not Found"}
+        </div>
       </div>
-    </div>
   );
 };
 

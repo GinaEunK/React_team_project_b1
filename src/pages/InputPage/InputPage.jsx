@@ -4,7 +4,6 @@ import Modal from "react-bootstrap/Modal";
 import InputPageModal from "../../components/inputpagemodal/InputPageModal";
 import { addMovie } from "../../redux/modules/movieSlice";
 import { useDispatch } from "react-redux";
-
 import { FaTimes } from "react-icons/fa";
 import shortId from "shortid";
 import "./inputPage.scss";
@@ -53,68 +52,68 @@ const InputPage = () => {
   const handleShow = () => setShow(true);
 
   return (
-    <div className="inputcontainer">
-      <FaTimes className="faArrowLeft" onClick={() => navigate("/")} />
-      <div className="inputbox">
-        <div className="imgcontainer">
-          <div className="imgbox">
-            {/* 유효성 검사/*/}
-            {moviePosting.img === undefined || moviePosting.img === "" ? (
-              <div className="noneimg" onClick={handleShow}>
-                +
-              </div>
-            ) : (
-              <img
-                id="simg"
-                onClick={handleShow}
-                className="imgtool"
-                src={moviePosting.img}
-              />
-            )}
+    <div className="inputWrap">
+      <div className="inputcontainer">
+        <FaTimes className="faArrowLeft" onClick={() => navigate("/")} />
+        <div className="inputbox">
+          <div className="imgcontainer">
+            <div className="imgbox">
+              {/* 유효성 검사/*/}
+              {moviePosting.img === undefined || moviePosting.img === "" ? (
+                <div className="noneimg" onClick={handleShow}>
+                  +
+                </div>
+              ) : (
+                <img
+                  id="simg"
+                  onClick={handleShow}
+                  className="imgtool"
+                  src={moviePosting.img}
+                />
+              )}
+            </div>
+            <span className="searchBox">
+              {show ? 
+              <Modal show={show} onHide={handleClose} className="searchModal">
+                <InputPageModal
+                  moviePosting={moviePosting}
+                  setShow={setShow}
+                  setMoviePosting={setMoviePosting}
+                  handleClose={handleClose}
+                  onChangeHandler={onChangeHandler}
+                /></Modal> : ''
+              }
+            </span>
           </div>
-          <span className="searchBox">
-            {/* <span onClick={handleShow} className="searchImg">
-              이미지 추가하기
-            </span> */}
-            <Modal show={show} onHide={handleClose}>
-              <InputPageModal
-                moviePosting={moviePosting}
-                setShow={setShow}
-                setMoviePosting={setMoviePosting}
-                handleClose={handleClose}
-                onChangeHandler={onChangeHandler}
-              />
-            </Modal>
-          </span>
-        </div>
-        <div className="formbox">
-          <input
-            type="text"
-            name="userid"
-            value={moviePosting.userid}
-            placeholder="사용자ID"
-            onChange={onChangeHandler}
-          />
+          <div className="formbox">
+            <input
+              type="text"
+              name="userid"
+              value={moviePosting.userid}
+              placeholder="사용자ID"
+              onChange={onChangeHandler}
+            />
 
-          <input
-            type="text"
-            name="title"
-            value={moviePosting.title}
-            placeholder="제목"
-            onChange={onChangeHandler}
-          />
+            <input
+              type="text"
+              name="title"
+              value={moviePosting.title}
+              placeholder="제목"
+              onChange={onChangeHandler}
+            />
 
-          <textarea
-            type="text"
-            name="body"
-            value={moviePosting.body}
-            placeholder="내용"
-            onChange={onChangeHandler}
-            className="inputBody"
-          ></textarea>
-          <button className="addButton" onClick={onSubmitHandler}>
-            추가하기
-          </button>
+            <textarea
+              type="text"
+              name="body"
+              value={moviePosting.body}
+              placeholder="내용"
+              onChange={onChangeHandler}
+              className="inputBody"
+            ></textarea>
+            <button className="addButton" onClick={onSubmitHandler}>
+              추가하기
+            </button>
+          </div>
         </div>
       </div>
     </div>
