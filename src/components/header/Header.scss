@@ -8,6 +8,7 @@
   bottom: 0;
   left: 0;
   z-index: 99;
+  background :rgba(0,0,0,0.6);
 }
 
 .header {
@@ -69,6 +70,12 @@
 .postingus, .aboutus{
   display: flex;
   color: $font-title-color;
+  opacity: 0.9;
+
+  &:hover{
+    opacity: 1;
+    scale:(1.01);
+  }
 }
 
 .FaGithub, .FaBook{

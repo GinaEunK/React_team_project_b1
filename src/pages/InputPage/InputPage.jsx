@@ -74,14 +74,14 @@ const InputPage = () => {
             </div>
             <span className="searchBox">
               {show ? 
-              <div className="searchModal">
+              <Modal show={show} onHide={handleClose} className="searchModal">
                 <InputPageModal
                   moviePosting={moviePosting}
                   setShow={setShow}
                   setMoviePosting={setMoviePosting}
                   handleClose={handleClose}
                   onChangeHandler={onChangeHandler}
-                /></div> : ''
+                /></Modal> : ''
               }
             </span>
           </div>
