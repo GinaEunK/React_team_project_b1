@@ -16,7 +16,7 @@ const DetailPageModal = ({ show, onHide, setShow, id }) => {
 
   let inputeditBody = (e) => {
     const { name, value } = e.target;
-    setEditBody({ ...edit_Body, [name]: value, id:id });
+    setEditBody({ ...edit_Body, [name]: value, id: id });
   };
 
   let onSubmitHandler = (event) => {
@@ -26,7 +26,7 @@ const DetailPageModal = ({ show, onHide, setShow, id }) => {
     } else {
       event.preventDefault();
       dispatch(editBody(edit_Body));
-      console.log(edit_Body)
+      console.log(edit_Body);
       setEditBody(initialState);
       alert("정상적으로 등록 되었습니다.");
       setShow(false);
@@ -35,26 +35,27 @@ const DetailPageModal = ({ show, onHide, setShow, id }) => {
 
   return (
     <Modal
-      className="modalBox"
       show={show}
       onHide={onHide}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <FaTimes className="faArrowLeft" onClick={onHide} />
-      <div className="editWrap">
-        <input
-          className="editBody"
-          name="body"
-          value={edit_Body.body}
-          type="text"
-          placeholder="내용을 입력해주세요"
-          onChange={inputeditBody}
-        ></input>
-        <button onClick={onSubmitHandler} className="edit_done_btn">
-          수정완료
-        </button>
+      <div className="modalBox">
+        <FaTimes className="faArrowLeft" onClick={onHide} />
+        <div className="editWrap">
+          <input
+            className="editBody"
+            name="body"
+            value={edit_Body.body}
+            type="text"
+            placeholder="내용을 입력해주세요"
+            onChange={inputeditBody}
+          ></input>
+          <button onClick={onSubmitHandler} className="edit_done_btn">
+            수정완료
+          </button>
+        </div>
       </div>
     </Modal>
   );
