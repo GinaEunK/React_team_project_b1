@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import InputPageModal from "../../components/inputpagemodal/InputPageModal";
-import { addMovie } from "../../redux/modules/movieSlice"
+import { addMovie } from "../../redux/modules/movieSlice";
 import { useDispatch } from "react-redux";
 
 import { FaTimes } from "react-icons/fa";
@@ -11,7 +11,7 @@ import "./inputPage.scss";
 
 const InputPage = () => {
   let navigate = useNavigate();
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const shortid = shortId.generate();
   const initialState = {
     id: 0,
@@ -39,10 +39,10 @@ const InputPage = () => {
       alert("내용을 모두 채워주세요!!");
     } else {
       event.preventDefault();
-       dispatch(addMovie(moviePosting, shortid));
+      dispatch(addMovie(moviePosting, shortid));
       // console.log(search.img);
       setMoviePosting(initialState);
-      alert('정상적으로 등록 되었습니다.')
+      alert("정상적으로 등록 되었습니다.");
       navigate("/");
     }
   };

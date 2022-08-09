@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { act } from "react-dom/test-utils";
 
 let movies = createSlice({
   name: "movies",
@@ -30,8 +31,27 @@ let movies = createSlice({
     addMovie: (state, action) => {
       return (state = [...state, action.payload]);
     },
+    deleteMovie: (state, action) => {
+      return (state = state.filter((movie) => movie.id !== action.payload));
+    },
+    editBody: (state, action) => {
+      state = state.map((data) => {
+        if (data.id === action.payload.id) {
+          data.contents = action.payload.new;
+        }
+        return data;
+      });
+    },
+    getBody: (state, action) => {
+      state = state.map((data) => {
+        if (data.id === action.payload) {
+          state.id = action.payload;
+        }
+        return data;
+      });
+    },
   },
 });
 
-export let { addMovie } = movies.actions;
+export let { addMovie, deleteMovie, editBody, getBody } = movies.actions;
 export default movies.reducer;
