@@ -36,8 +36,8 @@ let movies = createSlice({
     },
     editBody: (state, action) => {
       state = state.map((data) => {
-        if (data.id === action.payload.id) {
-          data.contents = action.payload.new;
+        if (data.id == action.payload.id) {
+          data.body = action.payload.body;
         }
         return data;
       });

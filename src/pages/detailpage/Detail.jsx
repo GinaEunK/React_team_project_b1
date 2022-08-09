@@ -12,30 +12,9 @@ const Detail = () => {
   const { id } = useParams();
 
   const [modalOn, setModalOn] = useState(false);
-  const [newBody, setNewBody] = useState("");
 
   let movies = useSelector((state) => state.movies);
   const movie = movies.find((movie) => movie.id == id);
-
-  useEffect(() => {
-    dispatch(getBody(id));
-  }, [dispatch, id]);
-
-  useEffect(() => {
-    setNewBody(movie.contents);
-  }, [movie]);
-
-  const onChangeHandler = (e) => {
-    const { name, value } = e.target;
-    setNewBody({ ...newBody, [name]: value, id: shortid });
-  };
-
-  const onSubmitHandler = () => {
-    // event.preventDefault();
-    dispatch(editBody(movie.id));
-  };
-
-  console.log(movie);
 
   return (
     <div>
@@ -47,7 +26,9 @@ const Detail = () => {
           <div className="contentBox">
             <h2>{movie.title}</h2>
             <h5>{movie.userid}</h5>
-            <input>{movie.body}</input>
+
+            <p>{movie.body}</p>
+
             <div className="btn_set">
               <button className="btn_edit" onClick={() => setModalOn(true)}>
                 수정하기
@@ -65,7 +46,7 @@ const Detail = () => {
           </div>
         </div>
       </div>
-      <DetailPageModal show={modalOn} onHide={() => setModalOn(false)}>
+      <DetailPageModal show={modalOn} id={id} setShow={setModalOn} onHide={() => setModalOn(false)}>
         {" "}
       </DetailPageModal>
     </div>
