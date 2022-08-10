@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import "./detail.scss";
 import DetailPageModal from "../../components/detailPageModal/DetailPageModal";
 import { delMoviesThunk } from "../../redux/modules/movieSlice";
-import { getMovieThunk, editMovieThunk } from "../../redux/modules/targetMovieSlice";
+import { getMovieThunk } from "../../redux/modules/targetMovieSlice";
 import shortid from "shortid";
+import DetailPageComments from "../../components/detailPageComments/DetailPageComments";
 
 const Detail = () => {
   const navigate = useNavigate();
@@ -13,16 +14,12 @@ const Detail = () => {
   const { id } = useParams();
   const [modalOn, setModalOn] = useState(false);
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getMovieThunk(id));
-  },[dispatch, id]);
+  }, [dispatch, id]);
 
   const movie = useSelector((state) => state.movie.movie);
-  console.log(movie)
-
-
-
-
+  console.log(movie);
 
   return (
     <div>
@@ -51,8 +48,14 @@ const Detail = () => {
             </div>
           </div>
         </div>
+        <DetailPageComments targetId={id} />
       </div>
-      <DetailPageModal show={modalOn} id={id} setShow={setModalOn} onHide={() => setModalOn(false)}>
+      <DetailPageModal
+        show={modalOn}
+        id={id}
+        setShow={setModalOn}
+        onHide={() => setModalOn(false)}
+      >
         {" "}
       </DetailPageModal>
     </div>

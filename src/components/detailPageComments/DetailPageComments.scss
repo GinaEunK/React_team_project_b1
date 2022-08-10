@@ -1,0 +1,11 @@
+@import "../../common/color.scss";
+
+.commentContainer {
+  color: $font-primary;
+  border: 1px solid white;
+  height: 150px;
+  width: 600px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
