@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
 export const getMoviesThunk = createAsyncThunk(
   "getMovies",
   async (payload, api) => {
@@ -16,10 +15,7 @@ export const addMoviesThunk = createAsyncThunk(
   "postMovies",
   async (payload, thunkapi) => {
     try {
-      const  data = await axios.post(
-        "http://localhost:3001/movies",
-        payload
-      );
+      const data = await axios.post("http://localhost:3001/movies", payload);
       return thunkapi.fulfillWithValue(data.data);
     } catch (e) {
       return thunkapi.rejectWithValue(e);
@@ -49,7 +45,7 @@ export const movieSlice = createSlice({
   reducers: {},
   extraReducers: {
     [getMoviesThunk.fulfilled]: (state, action) => {
-      state.movies=action.payload
+      state.movies = action.payload;
     },
     [getMoviesThunk.rejected]: (state, action) => {
       console.log(state);
@@ -68,7 +64,7 @@ export const movieSlice = createSlice({
     [addMoviesThunk.rejected]: (state, action) => {
       state.error = action.payload;
     },
-    [delMoviesThunk.fulfilled]: (state, action) =>{
+    [delMoviesThunk.fulfilled]: (state, action) => {
       const target = state.movies.findIndex(
         (movies) => movies.id === action.payload
       );
@@ -77,10 +73,8 @@ export const movieSlice = createSlice({
     },
     [delMoviesThunk.rejected]: () => {},
     [delMoviesThunk.pending]: () => {},
-    }
-
   },
-);
+});
 
 export let { clearTodo } = movieSlice.actions;
 export default movieSlice.reducer;
