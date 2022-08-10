@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { FaTimes } from "react-icons/fa";
-import { editBody } from "../../redux/modules/movieSlice";
+import { editMovieThunk } from "../../redux/modules/targetMovieSlice";
 import "./DetailPageModal.scss";
 
 const DetailPageModal = ({ show, onHide, setShow, id }) => {
@@ -25,7 +25,7 @@ const DetailPageModal = ({ show, onHide, setShow, id }) => {
       alert("내용을 모두 채워주세요!!");
     } else {
       event.preventDefault();
-      dispatch(editBody(edit_Body));
+      dispatch(editMovieThunk(edit_Body));
       console.log(edit_Body);
       setEditBody(initialState);
       alert("정상적으로 등록 되었습니다.");
