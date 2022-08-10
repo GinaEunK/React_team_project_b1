@@ -2,10 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { act } from "react-dom/test-utils";
 
-// export const getMoviesThunk = createAsyncThunk("getMovies", async () => {
-//   const data = await axios.get("url");
-// });
-
 let movies = createSlice({
   name: "movies",
   initialState: [
