@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import InputPageModal from "../../components/inputpagemodal/InputPageModal";
-import { addMovie } from "../../redux/modules/movieSlice";
+import { addMoviesThunk } from "../../redux/modules/movieSlice";
 import { useDispatch } from "react-redux";
 import { FaTimes } from "react-icons/fa";
 import shortId from "shortid";
@@ -13,7 +13,6 @@ const InputPage = () => {
   const dispatch = useDispatch();
   const shortid = shortId.generate();
   const initialState = {
-    id: 0,
     userid: "",
     title: "",
     body: "",
@@ -28,18 +27,16 @@ const InputPage = () => {
   };
 
   let onSubmitHandler = (event) => {
+    event.preventDefault();
     if (
       moviePosting.userid === "" ||
       moviePosting.title === "" ||
       moviePosting.body === "" ||
       moviePosting.img === ""
     ) {
-      event.preventDefault();
       alert("내용을 모두 채워주세요!!");
     } else {
-      event.preventDefault();
-      dispatch(addMovie(moviePosting, shortid));
-      // console.log(search.img);
+      dispatch(addMoviesThunk(moviePosting));
       setMoviePosting(initialState);
       alert("정상적으로 등록 되었습니다.");
       navigate("/");
@@ -73,16 +70,19 @@ const InputPage = () => {
               )}
             </div>
             <span className="searchBox">
-              {show ? 
-              <Modal show={show} onHide={handleClose} className="searchModal">
-                <InputPageModal
-                  moviePosting={moviePosting}
-                  setShow={setShow}
-                  setMoviePosting={setMoviePosting}
-                  handleClose={handleClose}
-                  onChangeHandler={onChangeHandler}
-                /></Modal> : ''
-              }
+              {show ? (
+                <Modal show={show} onHide={handleClose} className="searchModal">
+                  <InputPageModal
+                    moviePosting={moviePosting}
+                    setShow={setShow}
+                    setMoviePosting={setMoviePosting}
+                    handleClose={handleClose}
+                    onChangeHandler={onChangeHandler}
+                  />
+                </Modal>
+              ) : (
+                ""
+              )}
             </span>
           </div>
           <div className="formbox">

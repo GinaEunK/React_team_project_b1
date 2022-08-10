@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./MovieCard.scss";
+import { getMoviesThunk } from "../../redux/modules/movieSlice";
 
-const MovieCard = () => {
-  let movies = useSelector((state) => state.movies);
+const MovieCard = ({ movies }) => {
+  let dispatch = useDispatch();
   let navigate = useNavigate();
+  useEffect(() => {
+    dispatch(getMoviesThunk());
+  }, []);
 
   return (
     <>
-      {movies.map((movies, index) => {
+      {movies.map((movies) => {
         return (
           <div
             className="card-inner"

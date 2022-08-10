@@ -3,18 +3,26 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./detail.scss";
 import DetailPageModal from "../../components/detailPageModal/DetailPageModal";
-import { deleteMovie, editBody, getBody } from "../../redux/modules/movieSlice";
+import { delMoviesThunk } from "../../redux/modules/movieSlice";
+import { getMovieThunk, editMovieThunk } from "../../redux/modules/targetMovieSlice";
 import shortid from "shortid";
 
 const Detail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
-
   const [modalOn, setModalOn] = useState(false);
 
-  let movies = useSelector((state) => state.movies);
-  const movie = movies.find((movie) => movie.id == id);
+  useEffect(()=>{
+    dispatch(getMovieThunk(id));
+  },[dispatch, id]);
+
+  const movie = useSelector((state) => state.movie.movie);
+  console.log(movie)
+
+
+
+
 
   return (
     <div>
@@ -26,9 +34,7 @@ const Detail = () => {
           <div className="contentBox">
             <h2>{movie.title}</h2>
             <h5>{movie.userid}</h5>
-
             <p>{movie.body}</p>
-
             <div className="btn_set">
               <button className="btn_edit" onClick={() => setModalOn(true)}>
                 수정하기
@@ -36,7 +42,7 @@ const Detail = () => {
               <button
                 className="btn_dele"
                 onClick={() => {
-                  dispatch(deleteMovie(movie.id));
+                  dispatch(delMoviesThunk(movie.id));
                   navigate("/");
                 }}
               >
