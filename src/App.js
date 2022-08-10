@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.scss";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/header/Header";
@@ -8,6 +8,7 @@ import PostList from "./pages/postlist/PostList";
 import Detail from "./pages/detailpage/Detail";
 
 function App() {
+
   return (
     <>
       <Header />
