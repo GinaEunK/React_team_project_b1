@@ -6,6 +6,7 @@ import {
   addCommentThunk,
   delCommentThunk,
   getCommentThunk,
+  checkCommentThunk,
 } from "../../redux/modules/CommentSlice";
 import {
   editCommentThunk,
@@ -22,30 +23,23 @@ const CommentList = ({ targetId }) => {
   useEffect(() => {
     dispatch(getCommentThunk());
   }, [dispatch]);
+  useEffect(() => {
+    dispatch(getTargetCommentThunk(id));
+  }, [dispatch, id]);
 
   const initialState = {
     id: 0,
     userid: "",
     movieid: "",
     body: "",
+    isEditMode: false,
   };
 
   let [addComment, setAddComment] = useState(initialState);
 
   const target_comment = useSelector((state) => state.comment.reple);
   const put_comment = useSelector((state) => state.reple.reple);
-  console.log(target_comment);
-
-  const [isEditMode, setIsEditMode] = useState(false);
   const [newReple, setNewReple] = useState({ id: 0, body: "" });
-
-  const onClickEditButton = () => {
-    setIsEditMode(true);
-  };
-  const onChangeHandler = (e) => {
-    const { name, value } = e.target;
-    setNewReple({ ...newReple, [name]: value, id: shortId, movieid: id });
-  };
 
   const onClickSaveButton = (event) => {
     if (newReple.body == "") {
@@ -57,7 +51,7 @@ const CommentList = ({ targetId }) => {
       console.log(newReple);
       setNewReple(initialState);
       alert("정상적으로 등록 되었습니다");
-      setIsEditMode(false);
+      dispatch(checkCommentThunk(newReple));
     }
   };
 
@@ -68,6 +62,7 @@ const CommentList = ({ targetId }) => {
       [name]: value,
       id: shortid,
       movieid: targetId,
+      isEditMode: false,
     });
   };
 
@@ -118,24 +113,31 @@ const CommentList = ({ targetId }) => {
                         <div className="idtext">{item.userid}</div>
                         <div className="bodytext">{item.body}</div>
                       </div>
-                      {isEditMode ? (
+                      {item.isEditMode ? (
                         <input
                           className="editBox"
                           type="text"
                           name="body"
                           value={newReple.body}
-                          onChange={onChangeHandler}
+                          onChange={(e) => {
+                            const { name, value } = e.target;
+                            setNewReple({
+                              ...newReple,
+                              [name]: value,
+                              id: item.id,
+                            });
+                          }}
                         />
                       ) : (
                         <p>{put_comment?.content}</p>
                       )}
                       <div className="small_btns">
-                        {isEditMode ? (
+                        {item.isEditMode ? (
                           <button className="btn" onClick={onClickSaveButton}>
                             저장
                           </button>
                         ) : (
-                          <button className="btn" onClick={onClickEditButton}>
+                          <button className="btn" onClick={()=>dispatch(checkCommentThunk(item))}>
                             수정
                           </button>
                         )}

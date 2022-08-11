@@ -19,7 +19,7 @@ const Detail = () => {
   }, [dispatch, id]);
 
   const movie = useSelector((state) => state.movie.movie);
-  console.log(movie);
+
 
   return (
     <div>

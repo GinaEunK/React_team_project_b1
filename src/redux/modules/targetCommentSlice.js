@@ -5,8 +5,7 @@ export const getTargetCommentThunk = createAsyncThunk(
   "getComment",
   async (payload, repleapi) => {
     try {
-      const data = await axios.get(`http://localhost:3001/movies/${payload}`);
-      console.log(data);
+      const data = await axios.get(`http://localhost:3001/reple?movieid=${payload}`);
       return repleapi.fulfillWithValue(data.data);
     } catch (e) {
       return repleapi.rejectWithValue(e);
@@ -39,12 +38,12 @@ export const targetCommentSlice = createSlice({
       state.reple = action.payload;
     },
     [getTargetCommentThunk.rejected]: (state, action) => {
-      console.log(state);
+      // console.log(state);
       state.error = action.payload;
     },
     [getTargetCommentThunk.pending]: (state, action) => {
-      console.log(action);
-      console.log(state);
+      // console.log(action);
+      // console.log(state);
     },
     [editCommentThunk.fulfilled]: (state, action) => {
       state.reple.map((reple) => {
@@ -61,7 +60,7 @@ export const targetCommentSlice = createSlice({
       state.error = action.payload;
     },
     [editCommentThunk.pending]: (state) => {
-      console.log(state);
+      // console.log(state);
     },
   },
 });
