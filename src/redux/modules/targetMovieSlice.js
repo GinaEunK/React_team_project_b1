@@ -48,11 +48,11 @@ export const tagetMovieSlice = createSlice({
       state.error = action.payload;
     },
     [getMovieThunk.pending]: (state, action) => {
-      console.log(action);
-      console.log(state);
+      // console.log(action);
+      // console.log(state);
     },
     [editMovieThunk.pending]: (state) => {
-      console.log(state);
+      // console.log(state);
     },
     [editMovieThunk.fulfilled]: (state, action) => {
       state.movie.body = action.payload.body;
