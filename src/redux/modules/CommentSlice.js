@@ -5,7 +5,9 @@ export const getCommentThunk = createAsyncThunk(
   "getComment",
   async (payload, repleapi) => {
     try {
-      const data = await axios.get("http://localhost:3001/reple");
+      const data = await axios.get(
+        "https://sheltered-wave-74565.herokuapp.com/reple"
+      );
       return repleapi.fulfillWithValue(data.data);
     } catch (e) {}
   }
@@ -15,7 +17,10 @@ export const addCommentThunk = createAsyncThunk(
   "postComment",
   async (payload, repleapi) => {
     try {
-      const data = await axios.post("http://localhost:3001/reple", payload);
+      const data = await axios.post(
+        "https://sheltered-wave-74565.herokuapp.com/reple",
+        payload
+      );
       // console.log(save);
       return repleapi.fulfillWithValue(data.data);
     } catch (e) {
@@ -28,7 +33,10 @@ export const editCommentThunk = createAsyncThunk(
   "editComment",
   async (payload, repleapi) => {
     try {
-      axios.patch(`http://localhost:3001/reple/${payload.id}`, payload);
+      axios.patch(
+        `https://sheltered-wave-74565.herokuapp.com/${payload.id}`,
+        payload
+      );
       return repleapi.fulfillWithValue(payload);
     } catch (e) {
       return repleapi.rejectWithValue(e);
@@ -40,9 +48,11 @@ export const checkCommentThunk = createAsyncThunk(
   "checkComment",
   async (payload, repleapi) => {
     try {
-      axios.patch(`http://localhost:3001/reple/${payload.id}`, payload);
+      axios.patch(
+        `https://sheltered-wave-74565.herokuapp.com/reple/${payload.id}`,
+        payload
+      );
       return repleapi.fulfillWithValue(payload);
-      
     } catch (e) {
       return repleapi.rejectWithValue(e);
     }
@@ -53,7 +63,9 @@ export const delCommentThunk = createAsyncThunk(
   "delComment",
   async (payload, relpeapi) => {
     try {
-      axios.delete(`http://localhost:3001/reple/${payload}`);
+      axios.delete(
+        `https://sheltered-wave-74565.herokuapp.com/reple/${payload}`
+      );
       return relpeapi.fulfillWithValue(payload);
     } catch (e) {
       return relpeapi.rejectWithValue(e);
@@ -117,7 +129,7 @@ export const CommentSlice = createSlice({
     [checkCommentThunk.fulfilled]: (state, action) => {
       state.reple.map((reple) => {
         if (reple.id == action.payload.id) {
-          reple.isEditMode = !reple.isEditMode
+          reple.isEditMode = !reple.isEditMode;
         }
         return reple;
       });

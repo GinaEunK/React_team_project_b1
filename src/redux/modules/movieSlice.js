@@ -5,7 +5,9 @@ export const getMoviesThunk = createAsyncThunk(
   "getMovies",
   async (payload, api) => {
     try {
-      const data = await axios.get("http://localhost:3001/movies");
+      const data = await axios.get(
+        "https://sheltered-wave-74565.herokuapp.com/movies"
+      );
       return api.fulfillWithValue(data.data);
     } catch (e) {}
   }
@@ -15,7 +17,10 @@ export const addMoviesThunk = createAsyncThunk(
   "postMovies",
   async (payload, thunkapi) => {
     try {
-      const data = await axios.post("http://localhost:3001/movies", payload);
+      const data = await axios.post(
+        "https://sheltered-wave-74565.herokuapp.com/movies",
+        payload
+      );
       return thunkapi.fulfillWithValue(data.data);
     } catch (e) {
       return thunkapi.rejectWithValue(e);
@@ -27,7 +32,9 @@ export const delMoviesThunk = createAsyncThunk(
   "delMovies",
   async (payload, api) => {
     try {
-      axios.delete(`http://localhost:3001/movies/${payload}`);
+      axios.delete(
+        `https://sheltered-wave-74565.herokuapp.com/movies/${payload}`
+      );
       return api.fulfillWithValue(payload);
     } catch (e) {
       return api.rejectWithValue(e);

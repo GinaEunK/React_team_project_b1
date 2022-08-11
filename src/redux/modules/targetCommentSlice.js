@@ -5,7 +5,9 @@ export const getTargetCommentThunk = createAsyncThunk(
   "getComment",
   async (payload, repleapi) => {
     try {
-      const data = await axios.get(`http://localhost:3001/reple?movieid=${payload}`);
+      const data = await axios.get(
+        `https://sheltered-wave-74565.herokuapp.com/reple?movieid=${payload}`
+      );
       return repleapi.fulfillWithValue(data.data);
     } catch (e) {
       return repleapi.rejectWithValue(e);
@@ -17,7 +19,10 @@ export const editCommentThunk = createAsyncThunk(
   "editComment",
   async (payload, repleapi) => {
     try {
-      axios.patch(`http://localhost:3001/reple/${payload.id}`, payload);
+      axios.patch(
+        `https://sheltered-wave-74565.herokuapp.com/reple/${payload.id}`,
+        payload
+      );
       return repleapi.fulfillWithValue(payload);
     } catch (e) {
       return repleapi.rejectWithValue(e);
