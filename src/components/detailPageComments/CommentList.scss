@@ -1,14 +1,81 @@
 @import "../../common/color.scss";
 
 .inputBox {
-  border: 1px solid white;
-  // input {
-  //   color: $font-primary;
-  // }
+  // border: 1px solid white;
+  display: flex;
+  height: 40px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
-.repleBox {
-  border: 1px solid white;
+.inputId {
+  border-radius: 5px;
+  width: 15%;
+  margin-right: 16px;
+  margin-left: 5px;
+  border: 1px solid $font-title-color;
+  background-color: $components-color;
+  color: $font-primary;
+}
+.inputComment {
+  border-radius: 5px;
+  width: 67%;
+  border: 1px solid $font-title-color;
+  background-color: $components-color;
+  color: $font-primary;
+}
+
+.relpeBox {
+  display: flex;
+  height: 50px;
+  flex-direction: row;
+  margin-left: 10px;
+  margin-top: 20px;
+
   p {
-    color: white;
+    color: $font-primary;
   }
+}
+.rBox {
+  height: 50px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.idtext {
+  font-size: medium;
+  // margin-bottom: 10px;
+}
+.bodytext {
+  font-size: xx-large;
+}
+.editBox {
+  border: $font-title-color 1px solid;
+  border-radius: 5px;
+  height: 50px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.addBtn {
+  margin-left: auto;
+  margin-right: 5px;
+  border: $font-title-color 1px solid;
+  border-radius: 5px;
+  background: $font-title-color;
+  color: $font-primary;
+  width: 12%;
+  cursor: pointer;
+}
+.small_btns {
+  margin-left: auto;
+  // border: 1px solid yellow;
+  margin-top: 15px;
+}
+.btn {
+  border: $font-title-color 1px solid;
+  border-radius: 5px;
+  background: $font-title-color;
+  color: $font-primary;
+  cursor: pointer;
+  height: 40px;
+  width: 45px;
+  margin-right: 5px;
 }

@@ -1,11 +1,29 @@
 @import "../../common/color.scss";
 
-.commentContainer {
+.closeContainer {
   color: $font-primary;
-  border: 1px solid white;
-  height: 150px;
-  width: 600px;
+  border: 1px solid $font-title-color;
+  border-radius: 10px;
+  background-color: $components-color;
+  height: 860px;
+  width: 800px;
   position: absolute;
-  bottom: 0px;
-  left: 0px;
+  left: 50%;
+  bottom: -9%;
+  transform: translate(-50%, 0);
+  padding: 20px 15px 15px 15px;
+}
+.openContainer {
+  color: $font-primary;
+  border: 1px solid $font-title-color;
+  border-radius: 10px;
+  height: 60px;
+  width: 800px;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 16.5%);
+  text-align: center;
+  padding-top: 15px;
+  font-size: x-large;
 }

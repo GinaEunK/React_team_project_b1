@@ -7,16 +7,31 @@ const DetailPageComments = ({ targetId }) => {
 
   return (
     <div>
-      <div className="commentContainer">
-        <div
-          onClick={() => {
-            setIsShow((pre) => !pre);
-          }}
-          className="toggleContainer"
-        >
-          <h2>{isShow ? "눌러서 댓글내리기" : "눌러서 댓글보기"}</h2>
-        </div>
-        <CommentList targetId={targetId} />
+      <div>
+        <h2>
+          {isShow ? (
+            <div className="closeContainer">
+              <div
+                onClick={() => {
+                  setIsShow((pre) => !pre);
+                }}
+              >
+                눌러서 댓글내리기
+              </div>{" "}
+              <CommentList targetId={targetId} />
+            </div>
+          ) : (
+            <div className="openContainer">
+              <div
+                onClick={() => {
+                  setIsShow((pre) => !pre);
+                }}
+              >
+                눌러서 댓글보기
+              </div>
+            </div>
+          )}
+        </h2>
       </div>
     </div>
   );
